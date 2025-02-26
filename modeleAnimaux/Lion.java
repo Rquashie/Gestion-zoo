@@ -1,8 +1,8 @@
 package modeleAnimaux;
 
 public class Lion extends Animal {
-    public Lion (String nom , String age , String sexe){
-        super(nom, age, sexe);
+    public Lion (String nom , String age , String sexe,double poids){
+        super(nom, age, sexe,poids);
     }
 
     @Override
@@ -12,6 +12,15 @@ public class Lion extends Animal {
 
     @Override
     public void faireDuBruit() {
-        System.out.println("GRRRRRRRRRRRRR");
+        System.out.println("Lion : GRRRRRRRRRRRRR");
+    }
+
+    @Override
+    public void manger() {
+        super.manger();
+        System.out.println("Nourriture : 650g de viande");
+        System.out.println("Poids initial : "+super.getPoids()) ;
+        super.setPoids(super.getPoids()+0.650);
+        System.out.println("Poids après avoir mangé : "+String.format("%.2f", super.getPoids()) );
     }
 }
