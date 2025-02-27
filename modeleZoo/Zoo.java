@@ -1,4 +1,4 @@
-package modelePersonne;
+package modeleZoo;
 
 public class Zoo {
     private String nom;

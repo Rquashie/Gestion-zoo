@@ -14,4 +14,8 @@ public class Personne {
     public String getPrenom() {
         return prenom;
     }
+
+   public String toString() {
+        return "Nom :"+this.nom + "\nPrenom : " + this.prenom;
+   }
 }
