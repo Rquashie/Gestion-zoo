@@ -16,7 +16,8 @@ public class Application {
         System.out.println("\n----------Soigneur----------------------");
         Soigneur soigneur = new Soigneur("Quashie","Romario","Lion");
         soigneur.ajouterAnimal(lion);
-        soigneur.afficherAnimaux();
+        soigneur.diagnostic(lion);
+        soigneur.soigner(lion);
 
 
     }
