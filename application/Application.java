@@ -33,6 +33,8 @@ public class Application {
         spectacle1.afficheLesVisiteurs();
         spectacle1.annonceEntree(soigneur,lion);
         spectacle1.unSoigneurRentreAvecSonAnimal(soigneur,lion);
+        spectacle1.soigneurPresenteAnimal(soigneur,lion);
+        spectacle1.publicReagit(lion);
 
 
 

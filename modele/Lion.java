@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.Random;
+
 public class Lion extends Animal {
     public Lion (String nom , String age , String sexe,double poids){
         super(nom, age, sexe,poids);
@@ -23,7 +25,17 @@ public class Lion extends Animal {
         super.setPoids(super.getPoids()+0.650);
         System.out.println("Poids après avoir mangé : "+String.format("%.2f", super.getPoids()) );
     }
-    public void realiserUnTour() {
-        System.out.println("Le lion saute à travers un cerceau");
+    @Override
+    public boolean realiserUnTour() {
+        boolean reussi = super.realiserUnTour();
+        if (reussi){
+            System.out.println("Annonceur : Le lion bondit et traverse le cerceau enflammé !");
+            faireDuBruit();
     }
+        else {
+            System.out.println("Annonceur : Oh non le lion hésite et recule !");
+        }
+        return reussi ;
+    }
+
 }

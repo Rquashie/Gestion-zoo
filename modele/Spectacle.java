@@ -36,11 +36,16 @@ public class Spectacle {
             a.faireDuBruit();
         }
     }
-    public void soigneurPresenteAnimal(Animal a) {
-        System.out.println("Voici "+a.getNom());
+    public void soigneurPresenteAnimal(Soigneur s ,Animal a) {
+        System.out.println(s.getPrenom()+' '+s.getNom()+" : Voici mon animal "+a.getNom());
     }
-    public void publicReagit(){
-        System.out.println("Public :applaudissement");
+    public void publicReagit(Animal a){
+        if(a.realiserUnTour()){
+            System.out.println("Public : Wow !");
+        }
+        else{
+            System.out.println("Public : Oh ...");
+        }
     }
 
 

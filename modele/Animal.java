@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.Random;
+
 public class Animal {
     private String nom;
     private String age;
@@ -54,8 +56,14 @@ public class Animal {
     public void gueri(){
         this.estMalade = false ;
     }
-    public void realiserUnTour(){
-
+    public boolean realiserUnTour() {
+        int random = new Random().nextInt(101);
+        if (random <= 90) {//90% de réussite du tour
+            return true ;
+        }
+        else{
+            return false ;
+        }
     }
 
 
