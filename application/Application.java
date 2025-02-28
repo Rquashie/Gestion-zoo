@@ -1,13 +1,15 @@
 package application;
 
-import modele.Lion;
-import modele.Oiseau;
-import modele.Soigneur;
-import modele.Visiteur;
-import modele.Spectacle;
+import modele.*;
 
 public class Application {
     public static void main(String[] args) {
+
+        //Ouvre le Zoo
+
+        //Visiteur rentre
+
+        //Spectacle commence
         System.out.println("------------Oiseau------------------------");
         Oiseau oiseau = new Oiseau("Coco","5","M",2.5);
         oiseau.faireDuBruit();
@@ -21,20 +23,29 @@ public class Application {
         soigneur.diagnostic(lion);
         soigneur.soigner(lion);
         System.out.println("\n----------Visiteur---------------------");
-        Visiteur visiteur1 = new Visiteur("Dupont","Jean","26");
-        visiteur1.calculPrix(visiteur1);
-        Visiteur visiteur2 = new Visiteur("Rina","Toto","76") ;
-        visiteur2.calculPrix(visiteur2);
+        Billeterie billeterie = new Billeterie() ;
+        Visiteur visiteurA = new Visiteur("Dupont","Jean","26");
+        billeterie.passeAlaCaisse(visiteurA);
+        Visiteur visiteurB = new Visiteur("Rina","Toto","76") ;
+        billeterie.passeAlaCaisse(visiteurB);
+        Visiteur visiteurC = new Visiteur("Pacino","Al","5");
+        billeterie.passeAlaCaisse(visiteurC);
 
-        System.out.println("-------------Spectacle-------------------------");
+
+        System.out.println("\n-------------Spectacle-------------------------");
         Spectacle spectacle1 = new Spectacle("Spectacle 1","01:30:00");
-        spectacle1.unVisiteurAssisteAuSpectacle(visiteur1);
-        spectacle1.unVisiteurAssisteAuSpectacle(visiteur2);
+        spectacle1.unVisiteurAssisteAuSpectacle(visiteurA);
+        spectacle1.unVisiteurAssisteAuSpectacle(visiteurB);
         spectacle1.afficheLesVisiteurs();
         spectacle1.annonceEntree(soigneur,lion);
         spectacle1.unSoigneurRentreAvecSonAnimal(soigneur,lion);
         spectacle1.soigneurPresenteAnimal(soigneur,lion);
         spectacle1.publicReagit(lion);
+
+        System.out.println("\n-------------Finances----------------");
+        System.out.println(billeterie.getRecettesTotales()) ;
+        System.out.println(billeterie.repartitionBilletsCategories());
+        System.out.println(billeterie.getNombreDeBilletVendus());
 
 
 

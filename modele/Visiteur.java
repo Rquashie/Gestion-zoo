@@ -7,19 +7,25 @@ public class Visiteur extends Personne{
     public Visiteur(String nom , String prenom ,String age ){
         super(nom,prenom);
         this.age = age;
-        this.tarif = tarif;
+        acheterBillet();
     }
-    public void calculPrix(Visiteur v){
-        if(Integer.parseInt(v.age) < 16){
-          this.tarif = 5 ;
+    public String getAge() {
+        return age;
+    }
+    public void acheterBillet(){
+        if(Integer.parseInt(this.age) < 16){
+          this.tarif = 5.5 ;
 
     }
-        else if (Integer.parseInt(v.age) > 16 && Integer.parseInt(v.age) < 65){
-            this.tarif = 20 ;
+        else if (Integer.parseInt(this.age) > 16 && Integer.parseInt(this.age) < 65){
+            this.tarif = 19.99 ;
         }
         else{
-            this.tarif = 10 ;
+            this.tarif = 10.99 ;
         }
+    }
+    public double getTarif() {
+        return tarif;
     }
 
     @Override
