@@ -1,4 +1,4 @@
-package modeleZoo;
+package modele;
 
 public class Zoo {
     private String nom;

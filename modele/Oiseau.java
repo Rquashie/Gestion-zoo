@@ -1,4 +1,4 @@
-package modeleAnimaux;
+package modele;
 
 public class Oiseau extends Animal{
     public Oiseau(String nom , String age , String sexe,double poids) {

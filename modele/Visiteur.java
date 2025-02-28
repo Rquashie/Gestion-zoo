@@ -1,4 +1,4 @@
-package modelePersonne;
+package modele;
 
 public class Visiteur extends Personne{
     private String age ;

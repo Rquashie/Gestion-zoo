@@ -1,7 +1,4 @@
-package modeleAnimaux;
-
-import java.util.ArrayList;
-import java.util.Random;
+package modele;
 
 public class Animal {
     private String nom;
@@ -57,6 +54,10 @@ public class Animal {
     public void gueri(){
         this.estMalade = false ;
     }
+    public void realiserUnTour(){
+
+    }
+
 
 
 }

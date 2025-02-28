@@ -1,6 +1,4 @@
-package modelePersonne;
-
-import modeleAnimaux.Animal;
+package modele;
 
 import java.util.ArrayList;
 import java.util.Random;

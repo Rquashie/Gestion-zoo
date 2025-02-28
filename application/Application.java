@@ -1,10 +1,10 @@
 package application;
 
-import modeleAnimaux.Lion;
-import modeleAnimaux.Oiseau;
-import modelePersonne.Soigneur;
-import modelePersonne.Visiteur;
-import modeleZoo.Spectacle;
+import modele.Lion;
+import modele.Oiseau;
+import modele.Soigneur;
+import modele.Visiteur;
+import modele.Spectacle;
 
 public class Application {
     public static void main(String[] args) {
@@ -28,9 +28,11 @@ public class Application {
 
         System.out.println("-------------Spectacle-------------------------");
         Spectacle spectacle1 = new Spectacle("Spectacle 1","01:30:00");
-        spectacle1.unVisiteurRentre(visiteur1);
-        spectacle1.unVisiteurRentre(visiteur2);
+        spectacle1.unVisiteurAssisteAuSpectacle(visiteur1);
+        spectacle1.unVisiteurAssisteAuSpectacle(visiteur2);
         spectacle1.afficheLesVisiteurs();
+        spectacle1.annonceEntree(soigneur,lion);
+        spectacle1.unSoigneurRentreAvecSonAnimal(soigneur,lion);
 
 
 

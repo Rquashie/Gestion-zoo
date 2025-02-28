@@ -1,4 +1,4 @@
-package modeleAnimaux;
+package modele;
 
 public class Lion extends Animal {
     public Lion (String nom , String age , String sexe,double poids){
@@ -22,5 +22,8 @@ public class Lion extends Animal {
         System.out.println("Poids initial : "+super.getPoids()) ;
         super.setPoids(super.getPoids()+0.650);
         System.out.println("Poids après avoir mangé : "+String.format("%.2f", super.getPoids()) );
+    }
+    public void realiserUnTour() {
+        System.out.println("Le lion saute à travers un cerceau");
     }
 }
