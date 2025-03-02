@@ -7,7 +7,7 @@ public class Visiteur extends Personne{
     public Visiteur(String nom , String prenom ,String age ){
         super(nom,prenom);
         this.age = age;
-        acheterBillet();
+
     }
     public String getAge() {
         return age;

@@ -20,9 +20,9 @@ public class Lion extends Animal {
     @Override
     public void manger() {
         super.manger();
-        System.out.println("Nourriture : 650g de viande");
+        System.out.println("Nourriture : 7kg de viande");
         System.out.println("Poids initial : "+super.getPoids()) ;
-        super.setPoids(super.getPoids()+0.650);
+        super.setPoids(super.getPoids()+0.850);
         System.out.println("Poids après avoir mangé : "+String.format("%.2f", super.getPoids()) );
     }
     @Override

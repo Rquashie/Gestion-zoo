@@ -1,5 +1,7 @@
 package modele;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -30,21 +32,22 @@ public class Billeterie {
     public void passeAlaCaisse(Visiteur v){
         listeClients.add(v) ;
         nombreDeBilletVendus++;
+        double tarif = v.getTarif();
         if(Integer.parseInt(v.getAge()) <16){
             listeClientsEnfants.add(v);
-            double tarif = v.getTarif();
+            v.acheterBillet();
             this.recettesTotales += tarif;
         }
         else if (Integer.parseInt(v.getAge()) > 16 && Integer.parseInt(v.getAge()) < 65){
             listeClientsAdultes.add(v);
-            double tarif = v.getTarif();
             this.recettesTotales += tarif;
         }
         else {
             listeClientsSenior.add(v);
-            double tarif = v.getTarif();
             this.recettesTotales += tarif;
         }
+    }
+    public void justificatifBillet(Visiteur v){
         Instant instant = Instant.now();
         LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.of("Europe/Paris"));
 
@@ -56,9 +59,10 @@ public class Billeterie {
                 "Prix du billet : "+v.getTarif()+" euros\n" +
                 "Date et heure de l'achat : "+dateTexte+"\n");
     }
-    public String getRecettesTotales() {
+
+    public void getRecettesTotales() {
         DecimalFormat df1 = new DecimalFormat( "#.##" );
-        return "Recettes totales : "+df1.format(this.recettesTotales)+" euros";
+        System.out.println("Recettes totales : "+df1.format(this.recettesTotales)+" euros");
     }
     public String getNombreDeBilletVendus() {
         return "Nombre de billets vendus : "+this.nombreDeBilletVendus ;

@@ -5,32 +5,36 @@ import java.util.Random;
 
 public class Soigneur extends Personne {
     private String specialite;
-    private ArrayList<Animal> listeAnimaux;
+    private ArrayList<Animal> lesAnimauxduSoigneur;
 
     public Soigneur(String nom, String prenom, String specialite) {
         super(nom, prenom);
         this.specialite = specialite;
-        this.listeAnimaux = new ArrayList<Animal>();
+        this.lesAnimauxduSoigneur = new ArrayList<Animal>();
     }
-
+    public String getSpecialite() {
+        return specialite;
+    }
     public void ajouterAnimal(Animal a) {
-        if (specialite.equals(a.getClass().getSimpleName())) {
-            this.listeAnimaux.add(a);
-        } else {
-            System.out.println("Le soigneur n'est pas spécialiste de cet animal");
-        }
+        this.lesAnimauxduSoigneur.add(a);
+    }
+    public void nourrirAnimal(Animal a){
+        System.out.println("Nourriture : 7kg de viande");
+        System.out.println("Poids initial : "+a.getPoids()) ;
+        a.setPoids(a.getPoids()+0.850);
+        System.out.println("Poids après avoir mangé : "+String.format("%.2f", a.getPoids()) );
     }
 
-    public void afficherAnimaux() {
+    public void afficherLesAnimauxDuSoigneur() {
         System.out.println("Animaux gérés par le soigneur " + this.getPrenom() + ' ' + this.getNom());
-        for (Animal a : this.listeAnimaux) {
+        for (Animal a : this.lesAnimauxduSoigneur) {
             System.out.println(a.toString());
         }
     }
 
     public void diagnostic(Animal a) {
 
-        if (listeAnimaux.contains(a)) {
+        if (lesAnimauxduSoigneur.contains(a)) {
             int random = new Random().nextInt(2);
             if (random == 0) {
                 System.out.println("Positif : L'animal est en pleine forme ");
