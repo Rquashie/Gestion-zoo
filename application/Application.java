@@ -40,8 +40,8 @@ public class Application {
         System.out.println("11 - Visiteur achète un billet");
         System.out.println("12 - Afficher les visiteurs du jour");
         System.out.println("13 - Afficher le billet du visiteur");
-        System.out.println("13 - Afficher les statistiques du zoo");
         System.out.println("14 - Exporter les animaux du zoo en CSV");
+        System.out.println("15 - Afficher les statistiques du zoo");
         System.out.println(" - Exporter les statistiques sur Excel");
         System.out.println(" - Fermer");
         Zoo zoo = new Zoo("Zoo de Madagascar");

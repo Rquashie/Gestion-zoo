@@ -132,6 +132,7 @@ public class Zoo {
         for(Visiteur v : this.lesVisiteurs){
             fichier.append(v.getNom()+","+v.getPrenom()+","+v.getAge()+","+v.getTarif()+" euros\n");
         }
+        System.out.println("Données exportées avec succès");
         fichier.close();
     }
 
