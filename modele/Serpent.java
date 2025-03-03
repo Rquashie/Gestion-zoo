@@ -2,8 +2,8 @@ package modele;
 
 public class Serpent extends Animal {
 
-    public Serpent(String nom , String age , String sexe , double poids){
-        super(nom , age , sexe , poids);
+    public Serpent(String nom , String age ,  double poids){
+        super(nom , age ,  poids);
     }
 
     @Override
@@ -22,5 +22,10 @@ public class Serpent extends Animal {
         System.out.println("Poids initial : "+super.getPoids()) ;
         super.setPoids(super.getPoids()+0.60);
         System.out.println("Poids après avoir mangé : "+String.format("%.2f", super.getPoids()) );
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+"\nEspece : "+getClass().getSimpleName();
     }
 }

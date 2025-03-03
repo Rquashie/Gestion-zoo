@@ -15,20 +15,45 @@ public class Soigneur extends Personne {
     public String getSpecialite() {
         return specialite;
     }
+
+
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nspecialite : " + this.specialite;
+    }
+
     public void ajouterAnimal(Animal a) {
         this.lesAnimauxduSoigneur.add(a);
     }
-    public void nourrirAnimal(Animal a){
-        System.out.println("Nourriture : 7kg de viande");
-        System.out.println("Poids initial : "+a.getPoids()) ;
-        a.setPoids(a.getPoids()+0.850);
-        System.out.println("Poids après avoir mangé : "+String.format("%.2f", a.getPoids()) );
+    public void soigneurPrendEnCharge(Animal an ) {
+        if(!this.specialite.equals(an.getClass().getSimpleName())){
+            System.out.println("Le soigneur "+this.getPrenom()+" "+this.getNom()+" n'est pas spécialiste des "+an.getClass().getSimpleName());
+        }
+       if(lesAnimauxduSoigneur.contains(an)) {
+           System.out.println(an.getNom()+" est déja pris en charge par "+this.getPrenom()+" "+this.getNom());
+       }
+       else {
+           lesAnimauxduSoigneur.add(an);
+           System.out.println("Affectation effectué avec succès");
+       }
+    }
+    public void nourrirAnimal(Animal a) {
+        if (!lesAnimauxduSoigneur.contains(a)) {
+            System.out.println("Animal introuvable");
+        } else {
+            System.out.println("Nourriture : 7kg de viande");
+            System.out.println("Poids initial : " + a.getPoids());
+            a.setPoids(a.getPoids() + 0.850);
+            System.out.println("Poids après avoir mangé : " + String.format("%.2f", a.getPoids()));
+        }
     }
 
     public void afficherLesAnimauxDuSoigneur() {
         System.out.println("Animaux gérés par le soigneur " + this.getPrenom() + ' ' + this.getNom());
         for (Animal a : this.lesAnimauxduSoigneur) {
             System.out.println(a.toString());
+            System.out.println("-------");
         }
     }
 
@@ -42,6 +67,9 @@ public class Soigneur extends Personne {
             else if (random == 1) {
                 System.out.println("Negatif : "+this.getPrenom() + ' ' + this.getNom() + " remarque un problème de santé...");
                 a.malade();
+                System.out.println(a.getNom()+" a perdu du poids a cause de sa maladie");
+                System.out.println("Il est passé de "+a.getPoids()+" poids à "+(a.getPoids()-0.20));
+                a.setPoids(a.getPoids() - 0.20);
             }
         } else {
             System.out.println(this.getPrenom() + ' ' + this.getNom() + " ne peut pas diagnostiquer cet animal");

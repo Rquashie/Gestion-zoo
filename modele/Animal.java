@@ -5,15 +5,13 @@ import java.util.Random;
 public class Animal {
     private String nom;
     private String age;
-    private String sexe;
     private double poids;
     private boolean estMalade ;
 
 
-    public Animal(String nom, String age, String sexe, double poids) {
+    public Animal(String nom, String age, double poids) {
         this.nom = nom;
         this.age = age;
-        this.sexe = sexe;
         this.poids = poids;
         this.estMalade = false;
 
@@ -32,11 +30,11 @@ public class Animal {
     }
 
     public String getNom() {
-        return nom;
+        return this.nom;
     }
 
     public double getPoids() {
-        return poids;
+        return this.poids;
     }
 
     public void setPoids(double poids) {
@@ -44,10 +42,11 @@ public class Animal {
     }
 
     public String toString() {
-        return "Nom : " + nom + "\nAge : " + age + "\nSexe : " + sexe + "\nPoids : " + String.format("%.2f", poids);
+        return "Nom : " + this.nom + "\nAge : " + this.age+" ans" +  "\nPoids : " + this.poids+" kg";
     }
     public void malade() {
         this.estMalade = true ;
+        this.setPoids(this.poids-0.20);
     }
 
     public boolean estMalade() {

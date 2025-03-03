@@ -3,8 +3,8 @@ package modele;
 import java.util.Random;
 
 public class Lion extends Animal {
-    public Lion (String nom , String age , String sexe,double poids){
-        super(nom, age, sexe,poids);
+    public Lion (String nom , String age ,double poids){
+        super(nom, age, poids);
     }
 
     @Override
@@ -38,4 +38,8 @@ public class Lion extends Animal {
         return reussi ;
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+"\nEspece : "+getClass().getSimpleName();
+    }
 }

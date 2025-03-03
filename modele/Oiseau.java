@@ -1,8 +1,8 @@
 package modele;
 
 public class Oiseau extends Animal{
-    public Oiseau(String nom , String age , String sexe,double poids) {
-        super(nom, age, sexe,poids);
+    public Oiseau(String nom , String age ,double poids) {
+        super(nom, age, poids);
     }
 
     @Override
@@ -13,5 +13,10 @@ public class Oiseau extends Animal{
     @Override
     public void faireDuBruit() {
         System.out.println("Oiseau : CUI-CUI-CUI-CUI");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+"\nEspece : "+getClass().getSimpleName() ;
     }
 }
