@@ -1,7 +1,6 @@
 package modele;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+
 import java.text.DecimalFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -11,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
+
+
 
 public class Billeterie {
     private double recettesTotales;
@@ -32,10 +33,10 @@ public class Billeterie {
     public void passeAlaCaisse(Visiteur v){
         listeClients.add(v) ;
         nombreDeBilletVendus++;
+        v.acheterBillet();
         double tarif = v.getTarif();
         if(Integer.parseInt(v.getAge()) <16){
             listeClientsEnfants.add(v);
-            v.acheterBillet();
             this.recettesTotales += tarif;
         }
         else if (Integer.parseInt(v.getAge()) > 16 && Integer.parseInt(v.getAge()) < 65){
@@ -47,17 +48,16 @@ public class Billeterie {
             this.recettesTotales += tarif;
         }
     }
-    public void justificatifBillet(Visiteur v){
+    public String justificatifBillet(Visiteur v){
         Instant instant = Instant.now();
         LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.of("Europe/Paris"));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE d MMMM yyyy HH:mm:ss", Locale.FRANCE);
         String dateTexte = dateTime.format(formatter);
 
-        System.out.println("JUSTIFICATIF D'ACHAT :");
-        System.out.println("Nom de l'acheteur : "+v.getPrenom()+" "+v.getNom()+"\n" +
+        return "JUSTIFICATIF D'ACHAT :\n "+"Nom de l'acheteur : "+v.getPrenom()+" "+v.getNom()+"\n" +
                 "Prix du billet : "+v.getTarif()+" euros\n" +
-                "Date et heure de l'achat : "+dateTexte+"\n");
+                "Date et heure de l'achat : "+dateTexte+"\n" ;
     }
 
     public void getRecettesTotales() {
@@ -83,6 +83,10 @@ public class Billeterie {
         }
         return "Enfants : "+nbEnfants+" visiteurs"+"\nAdultes : "+nbAdultes+" visiteurs"+"\nSenior : "+nbSenior+" visiteurs\n" ;
     }
+    public void exporterStatistiques(){
+
+        }
+    }
 
 
-}
+

@@ -32,6 +32,9 @@ public class Animal {
     public String getNom() {
         return this.nom;
     }
+    public String getAge(){
+        return this.age ;
+    }
 
     public double getPoids() {
         return this.poids;

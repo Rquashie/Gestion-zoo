@@ -30,6 +30,6 @@ public class Visiteur extends Personne{
 
     @Override
     public String toString() {
-        return super.toString() + "\nage :" + this.age + "\ntarif : " + this.tarif ;
+        return super.toString() + "\nage : " + this.age +"ans"+ "\ntarif : " + this.tarif ;
     }
 }

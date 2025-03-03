@@ -2,20 +2,23 @@ package application;
 
 import modele.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int choix = 0;
         boolean ouvert = true;
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         String nomEspece = "";
         double poidsLion = 0.0,poidsOiseau = 0.0,poidsSerpent = 0.0;
         String nomSoigneur = "" , prenomSoigneur = "" , specialite = "";
-        String nomS = "",nomA ="";
+        String nomS = "",nomA ="",nomV="";
+        String nomPersonne ="",prenomPersonne="",agePersonne="";
         Soigneur leSoigneur_A_Affecter ;
+        Visiteur leVisiteur_A_Affecter ;
         Animal Animal_A_Affecter;
 
         ArrayList<String> listeEspece = new ArrayList<>();
@@ -34,15 +37,18 @@ public class Application {
         System.out.println("8 - Donner à manger à un animal");
         System.out.println("9 - Diagnostiquer un animal");
         System.out.println("10 - Soigner un animal");
-        System.out.println(" - Ajouter un visiteur");
-        System.out.println(" - Un visiteur achète un billet");
-        System.out.println(" - Afficher les statistiques du zoo");
-        System.out.println(" - Exporter les statistiques en JSON");
+        System.out.println("11 - Visiteur achète un billet");
+        System.out.println("12 - Afficher les visiteurs du jour");
+        System.out.println("13 - Afficher le billet du visiteur");
+        System.out.println("13 - Afficher les statistiques du zoo");
+        System.out.println("14 - Exporter les animaux du zoo en CSV");
         System.out.println(" - Exporter les statistiques sur Excel");
         System.out.println(" - Fermer");
         Zoo zoo = new Zoo("Zoo de Madagascar");
+        Billeterie billeterie = new Billeterie();
 
         do {
+
 
             System.out.println("Choisir une action : ");
             choix = sc.nextInt();
@@ -120,7 +126,7 @@ public class Application {
                         if(listeEspece.contains(specialite)){
                             break ;
                         }
-                        System.out.println("Veuilleza saisir une spsécialité présente dans le zoo ");
+                        System.out.println("Veuillez saisir une spsécialité présente dans le zoo ");
                     }
                     Soigneur soigneur = new Soigneur(nomSoigneur,prenomSoigneur,specialite);
                     zoo.inscrireSoigneurZoo(soigneur);
@@ -195,8 +201,7 @@ public class Application {
                     leSoigneur_A_Affecter.diagnostic(Animal_A_Affecter);
                     System.out.println("\nTâche effectué avec succès !");
                     break ;
-
-                    case 10 :
+                case 10 :
                         System.out.println("Nom du soigneur : ");
                         nomS = sc.next();
                         leSoigneur_A_Affecter =  zoo.chercherSoigneur(nomS);
@@ -216,6 +221,27 @@ public class Application {
                         leSoigneur_A_Affecter.soigner(Animal_A_Affecter);
                         System.out.println("\nTâche effectué avec succès !");
                         break ;
+                case 11 :
+                    System.out.println("Nom du visiteur : ");
+                    nomPersonne = sc.next();
+                    System.out.println("Prenom du visiteur : ");
+                    prenomPersonne = sc.next();
+                    System.out.println("Age du visiteur : ");
+                    agePersonne = sc.next();
+
+                    Visiteur visiteur = new Visiteur(nomPersonne,prenomPersonne,agePersonne);
+                    zoo.inscrireVisiteurZoo(visiteur);
+                    billeterie.passeAlaCaisse(visiteur);
+                    break ;
+                case 12 :
+                    zoo.afficherLesVisiteurs();
+                    break ;
+                case 13 :
+                    leVisiteur_A_Affecter = zoo.chercherVisiteur("Quashie","Romario");
+                    String ticket = billeterie.justificatifBillet(leVisiteur_A_Affecter);
+                    System.out.println(ticket);
+                case 14 :
+                    zoo.exporterListeAnimaux();
 
             }
 
