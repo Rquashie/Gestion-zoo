@@ -10,12 +10,14 @@ public class Zoo {
     private ArrayList<Animal> lesAnimaux;
     private ArrayList<Soigneur> lesSoigneurs;
     private ArrayList<Visiteur>lesVisiteurs;
+    private ArrayList<Enclos>lesEnclos;
 
     public Zoo(String nom ) {
         this.nom = nom;
         this.lesAnimaux = new ArrayList<>();
         this.lesSoigneurs = new ArrayList<>();
         this.lesVisiteurs = new ArrayList<>();
+        this.lesEnclos = new ArrayList<>();
     }
     public void ouvrirZoo(){
         System.out.println("Bienvenue au "+this.nom);
@@ -29,6 +31,9 @@ public class Zoo {
             this.lesAnimaux.add(a);
             System.out.println("L'animal a bien été inscrit au zoo");
         }
+    public void ajouterEnclosZoo(Enclos e){
+        lesEnclos.add(e);
+    }
     public void inscrireSoigneurZoo(Soigneur s ){
         this.lesSoigneurs.add(s);
         System.out.println("Le soigneur a bien été inscrit au zoo");
@@ -83,6 +88,22 @@ public class Zoo {
             }
         }
     }
+    public void afficherLesEnclos(){
+        if(this.lesEnclos.isEmpty()) {
+            System.out.println("Aucun enclos au zoo");
+        }
+        else {
+            System.out.println("------Les enclos du zoo------ ");
+            int i = 0 ;
+            for (Enclos e : this.lesEnclos) {
+                i++ ;
+                System.out.println("Id : "+i);
+                System.out.println(e.toString());
+                System.out.println("------------");
+            }
+        }
+    }
+
     public Soigneur chercherSoigneur(String nom){
         for(Soigneur s : this.lesSoigneurs){
             if(nom.equals(s.getNom())){
@@ -106,6 +127,15 @@ public class Zoo {
             if(nom.equals(v.getNom()) && prenom.equals(v.getPrenom())){
                 System.out.println("Visiteur trouvé");
                 return v ;
+            }
+        }
+        return null ;
+    }
+    public Enclos chercherEnclos(String nom){
+        for(Enclos e : this.lesEnclos){
+            if(nom.equals(e.getNomEnclos())) {
+                System.out.println("Enclos trouvé");
+                return e ;
             }
         }
         return null ;

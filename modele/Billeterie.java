@@ -49,15 +49,10 @@ public class Billeterie {
         }
     }
     public String justificatifBillet(Visiteur v){
-        Instant instant = Instant.now();
-        LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.of("Europe/Paris"));
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE d MMMM yyyy HH:mm:ss", Locale.FRANCE);
-        String dateTexte = dateTime.format(formatter);
-
+        Calendar c = Calendar.getInstance();
         return "JUSTIFICATIF D'ACHAT :\n "+"Nom de l'acheteur : "+v.getPrenom()+" "+v.getNom()+"\n" +
                 "Prix du billet : "+v.getTarif()+" euros\n" +
-                "Date et heure de l'achat : "+dateTexte+"\n" ;
+                "Date et heure de l'achat : "+c.getTime()+"\n" ;
     }
 
     public void getRecettesTotales() {

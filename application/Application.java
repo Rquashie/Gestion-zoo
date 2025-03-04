@@ -3,6 +3,7 @@ package application;
 import modele.*;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -15,11 +16,14 @@ public class Application {
         String nomEspece = "";
         double poidsLion = 0.0,poidsOiseau = 0.0,poidsSerpent = 0.0;
         String nomSoigneur = "" , prenomSoigneur = "" , specialite = "";
-        String nomS = "",nomA ="",nomV="";
+        String nomS = "",nomA ="",nomV="",nomE = "";
         String nomPersonne ="",prenomPersonne="",agePersonne="";
         Soigneur leSoigneur_A_Affecter ;
         Visiteur leVisiteur_A_Affecter ;
         Animal Animal_A_Affecter;
+        Enclos enclos_A_Affecter ;
+        int capacite ;
+        String nomLion = "", ageLion = "";
 
         ArrayList<String> listeEspece = new ArrayList<>();
         listeEspece.add("Lion");
@@ -40,16 +44,17 @@ public class Application {
         System.out.println("11 - Visiteur achète un billet");
         System.out.println("12 - Afficher les visiteurs du jour");
         System.out.println("13 - Afficher le billet du visiteur");
-        System.out.println("14 - Exporter les animaux du zoo en CSV");
-        System.out.println("15 - Afficher les statistiques du zoo");
-        System.out.println(" - Exporter les statistiques sur Excel");
+        System.out.println("14 - Ajouter un enclos");
+        System.out.println("15 - Ajouter des animaux en enclos");
+        System.out.println("16 - Afficher la liste des enclos du zoo");
+        System.out.println("17 - Afficher les animaux d'un enclos");
+        System.out.println("18 - Exporter les informations du zoo en CSV");
+        System.out.println("19 - Exporter les statistiques sur Excel");
         System.out.println(" - Fermer");
         Zoo zoo = new Zoo("Zoo de Madagascar");
         Billeterie billeterie = new Billeterie();
 
         do {
-
-
             System.out.println("Choisir une action : ");
             choix = sc.nextInt();
             sc.nextLine();
@@ -59,24 +64,26 @@ public class Application {
                     zoo.ouvrirZoo();
                     break ;
                 case 2 :
-                    System.out.println("Nom de l'espèce : ");
+                    System.out.println("Nom de l'espèce : (1ère lettre en majuscule)");
                     nomEspece = sc.next();
                     if(nomEspece.equals("Lion")) {
-                        System.out.println("Nom du lion : ");
-                        String nomLion = sc.next();
-                        System.out.println("Age du lion : ");
-                        String ageLion = sc.next();
-                        System.out.println("Poids du lion : ");
-                        while (!sc.hasNextDouble()) {
-                            System.out.println("Entrez un poids valide ");
-                            sc.next();
+                            System.out.println("Nom du lion : ");
+                            nomLion = sc.next();
+                            System.out.println("Age du lion : ");
+                            ageLion = sc.next();
+                            System.out.println("Poids du lion : ");
+                            while (!sc.hasNextDouble()) {
+                                System.out.println("Entrez un poids valide ");
+                                sc.next();
+                            }
+
+                            poidsLion = sc.nextDouble();
+                            sc.nextLine();
+                            Lion lion = new Lion(nomLion, ageLion, poidsLion);
+                            zoo.inscrireAnimalZoo(lion);
+                            break;
                         }
-                        poidsLion = sc.nextDouble();
-                        sc.nextLine();
-                        Lion lion = new Lion(nomLion, ageLion,  poidsLion);
-                        zoo.inscrireAnimalZoo(lion);
-                        break ;
-                    }
+
 
 
                     else if(nomEspece.equals("Oiseau")){
@@ -240,8 +247,52 @@ public class Application {
                     leVisiteur_A_Affecter = zoo.chercherVisiteur("Quashie","Romario");
                     String ticket = billeterie.justificatifBillet(leVisiteur_A_Affecter);
                     System.out.println(ticket);
+                    break ;
+
                 case 14 :
+                    System.out.println("Nom de l'enclos : ");
+                    nomE = sc.next();
+                    sc.nextLine() ;
+                    System.out.println("Capacité : ");
+                    capacite = sc.nextInt();
+                    sc.nextLine() ;
+                    Enclos enclos = new Enclos(nomE,capacite);
+                    zoo.ajouterEnclosZoo(enclos);
+                    break ;
+                case 15 :
+                    System.out.println("Nom de l'enclos :");
+                    nomE = sc.next();
+                    sc.nextLine() ;
+                    System.out.println("Nom de l'animal : ");
+                    nomA = sc.next();
+                    sc.nextLine() ;
+                    Animal_A_Affecter = zoo.chercherAnimal(nomA);
+                    if(Animal_A_Affecter==null){
+                        System.out.println("Aucun animal trouvé avec ce nom");
+                        break ;
+                    }
+                    enclos_A_Affecter = zoo.chercherEnclos(nomE) ;
+                    if(enclos_A_Affecter == null){
+                        System.out.println("Aucun enclos trouvé avec ce nom");
+                        break ;
+                    }
+                    enclos_A_Affecter.ajouterAnimal(Animal_A_Affecter);
+                    break ;
+                case 16 :
+                    zoo.afficherLesEnclos();
+                case 17 :
+                    System.out.println("Nom de l'enclos : ");
+                    nomE = sc.next();
+                    enclos_A_Affecter = zoo.chercherEnclos(nomE);
+                    if(enclos_A_Affecter == null){
+                        System.out.println("Aucun enclos à ce nom");
+                    }
+                    enclos_A_Affecter.afficherLesAnimauxDeLenclos();
+                case 19 :
                     zoo.exporterListeAnimaux();
+                    zoo.exporterListeSoigneurs();
+                    zoo.exporterListeSoigneurs();
+                    break ;
 
             }
 
